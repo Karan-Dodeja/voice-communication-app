@@ -1,29 +1,40 @@
 import React from "react";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
+import Card from "../../components/shared/Card/Card";
+import { Link, useHistory } from "react-router-dom";
+import Button from "../../components/shared/Button/Button";
 
 const Home = () => {
+  const signInLinkStyle = {
+    color: "#0077ff",
+    fontWeight: "bold",
+    textDecoration: "none",
+    marginLeft: "10px",
+  };
+  const history = useHistory();
+  const startRegistration = () => {
+    history.push("/register");
+  };
   return (
-    <div className={styles.card}>
-      <div className={styles.headingWrapper}>
-        <img alt="/images/logo.png" src="Logo" />
-        <h1>Welcome to Codershouse!</h1>
-      </div>
-      <p>
-        We're working hard to get Codershouse ready for everyone! While we wrap
-        up the finish youches, we're adding people gradually to make sure
-        nothing breaks
-      </p>
-      <div>
-        <button>
-          <span>Get your username</span>
-          <img src="/images/arrow-forward.png" alt="arrow" />
-        </button>
-      </div>
-      <div>
-        <span>Have an invite link ?</span>
-        <Link to="">Sign in</Link>
-      </div>
+    <div className={styles.cardWrapper}>
+      <Card title="Welcome to Codershouse!" icon="logo  ">
+        <p className={styles.text}>
+          We're working hard to get Codershouse ready for everyone! While we
+          wrap up the finish youches, we're adding people gradually to make sure
+          nothing breaks
+        </p>
+        <Button
+          onClick={startRegistration()}
+          text="Get your username"
+          icon="arrow-forward"
+        />
+        <div className={styles.signinWrapper}>
+          <span className={styles.hasInvite}>Have an invite link ?</span>
+          <Link style={signInLinkStyle} to="">
+            Sign in
+          </Link>
+        </div>
+      </Card>
     </div>
   );
 };
